@@ -52,6 +52,10 @@ export const resolvers = {
 
       return updatedTodo;
     },
+    deleteAllTodos: async (parent, args, { Todo }, info) => {
+      const todos = await Todo.deleteMany();
+      return todos;
+    },
     createUser: async (parent, { data }, { User }, info) => {
       const user = new User({ ...data });
       await user.save();
@@ -63,6 +67,10 @@ export const resolvers = {
       const updatedUser = new User({ ...user, ...data });
       await updatedUser.save();
       return updatedUser;
+    },
+    deleteAllUsers: async (parent, args, { User }, info) => {
+      const users = await User.deleteMany();
+      return users;
     },
   },
   Todo: {

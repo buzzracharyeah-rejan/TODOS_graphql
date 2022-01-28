@@ -25,13 +25,16 @@ export const typeDefs = gql`
   type Mutation {
     createUser(data: createUserInput!): User!
     updateUser(id: ID!, data: updateUserInput!): User!
+    deleteAllUsers: DeletedCount
     createTodo(data: createTodoInput!): Todo!
     updateTodo(id: ID!, data: updateTodoInput!): Todo!
+    deleteAllTodos: DeletedCount
   }
 
   input createUserInput {
     name: String!
     email: String!
+    password: String!
     age: Int!
     married: Boolean!
   }
@@ -68,8 +71,13 @@ export const typeDefs = gql`
     id: ID!
     name: String!
     email: String!
+    password: String!
     todos: [Todo!]!
     age: Int
     married: Boolean
+  }
+
+  type DeletedCount {
+    deletedCount: Int
   }
 `;
